@@ -14,5 +14,5 @@ ex.
 $test = JString::valueOf(" hello ");
 $fixed = $test->trim();
 $result = $fixed->toUpperCase();
-echo $result; // 'Hello'
+echo $result; // 'HELLO'
 ```
