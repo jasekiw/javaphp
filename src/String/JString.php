@@ -401,10 +401,12 @@ class JString
      * provided, that will be used instead of whitespace.
      *
      * @param string $charlist
+     *
+     * @return JString A string whose value is this string, with any leading and trailing white space removed
      */
     function trim($charlist = " \t\n\r\0\x0B")
     {
-        trim($this->inner, $charlist);
+        return new JString(trim($this->inner, $charlist));
     }
     
     /**
