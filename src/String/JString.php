@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Jason
- * Date: 8/4/2016
- * Time: 12:07 AM
- */
-
 namespace JavaPhp\String;
 
 use JavaPhp\Exception\StringIndexOutOfBoundsException;
@@ -240,22 +233,22 @@ class JString
      */
     function substring($beginIndex, $endIndex = -1, $useLength = false)
     {
+        // the length of the inner string is stored here in order to reduce the use of the strlen function
         $length = strlen($this->inner);
         if ($beginIndex < 0 || $beginIndex >= $length)
             throw new StringIndexOutOfBoundsException($endIndex);
-        if ($endIndex == -1) {
+        if ($endIndex == -1)
             return new JString(substr($this->inner, $beginIndex));
-        } else {
-            if ($useLength) {
-                if ($beginIndex + $endIndex > $length || $endIndex < 0)
-                    throw new StringIndexOutOfBoundsException($beginIndex + $endIndex);
-                return new JString(substr($this->inner, $beginIndex, $endIndex));
-            } else {
-                if ($endIndex < $beginIndex || $endIndex > $length)
-                    throw new StringIndexOutOfBoundsException($endIndex);
-                return new JString(substr($this->inner, $beginIndex, $endIndex - $beginIndex));
-            }
+        
+        if ($useLength) {
+            if ($beginIndex + $endIndex > $length || $endIndex < 0)
+                throw new StringIndexOutOfBoundsException($beginIndex + $endIndex);
+            return new JString(substr($this->inner, $beginIndex, $endIndex));
         }
+        
+        if ($endIndex < $beginIndex || $endIndex > $length)
+            throw new StringIndexOutOfBoundsException($endIndex);
+        return new JString(substr($this->inner, $beginIndex, $endIndex - $beginIndex));
     }
     
     /**
