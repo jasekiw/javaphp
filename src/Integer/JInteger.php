@@ -18,22 +18,36 @@ class JInteger {
 
   //FIELDS
 
-  //TODO : Implement BYTES, SIZE and TYPE
+  //TODO : Implement TYPE
+
+  /**
+   * From the Oracle Documentation on Java 8 https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html
+   * "The number of bytes used to represent a int value in two's complement binary form."
+   * @var int
+   */
+  public static $BYTES = PHP_INT_SIZE;
 
   /**
    * From the Oracle Documentation on Java 8 https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html
    * "A constant holding the maximum value an int can have, 2^31 - 1."
    * @var int
    */
-  public static $MAX_VALUE = pow(2, 31) - 1;
+  public static $MAX_VALUE = PHP_INT_MAX;
 
   /**
    * From the Oracle Documentation on Java 8 https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html
    * "A constant holding the minimum value an int can have, -2^31."
    * @var int
    */
-  public static $MIN_VALUE = -1 * pow(2,31);
+  public static $MIN_VALUE = PHP_INT_MIN;
 
+  /**
+   * From the Oracle Documentation on Java 8 https://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html
+   * "The number of bits used to represent an int value in two's complement binary form."
+   * Calculated by taking the size in bytes and multiplying it by 8, which is the number of bits in a byte.
+   * @var int
+   */
+  public static $SIZE = PHP_INT_SIZE * 8;
 
   //CONSTRUCTORS
   /**
