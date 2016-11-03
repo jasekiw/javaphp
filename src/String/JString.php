@@ -236,7 +236,7 @@ class JString
         // the length of the inner string is stored here in order to reduce the use of the strlen function
         $length = strlen($this->inner);
         if ($beginIndex < 0 || $beginIndex >= $length)
-            throw new StringIndexOutOfBoundsException($endIndex);
+            throw new StringIndexOutOfBoundsException($beginIndex);
         if ($endIndex == -1)
             return new JString(substr($this->inner, $beginIndex));
         

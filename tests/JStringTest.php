@@ -1,4 +1,5 @@
 <?php
+use JavaPhp\Exception\StringIndexOutOfBoundsException;
 use JavaPhp\String\JString;
 
 /**
@@ -37,7 +38,7 @@ class JStringTest extends PHPUnit_Framework_TestCase
     
     /**
      * basic test to make sure the StringIndexOutOfBoundsException is throws if charAt is used improperly
-     * @expectedException \JavaPhp\Exception\StringIndexOutOfBoundsException
+     * @expectedException StringIndexOutOfBoundsException
      */
     function testCharAtOutOfBounds()
     {
@@ -251,6 +252,19 @@ class JStringTest extends PHPUnit_Framework_TestCase
         $str = new JString("DATE: 09-08-1994");
         $twoString = $str->split('/\s+/');
         $test = "";
+    }
+    
+    function testSubstringOutOfRange() {
+        $str = new JString("hello");
+        try {
+            $str->substring(5, 1, true);
+        }
+        catch(StringIndexOutOfBoundsException $e)
+        {
+            self::assertEquals($e->getMessage(), "String index out of range: 5", "index out of range exception resports correct index");
+            return;
+        }
+        self::fail("exception not thrown");
     }
     
 }
