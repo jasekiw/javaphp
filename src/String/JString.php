@@ -2,6 +2,7 @@
 namespace JavaPhp\String;
 
 use JavaPhp\Exception\StringIndexOutOfBoundsException;
+use PhpCollection\Sequence;
 
 /**
  * Class JString A Java like String for php
@@ -139,16 +140,16 @@ class JString
      * Tests if this string starts with the specified prefix ignoring case.
      *
      * @param string $prefix the prefix.
-     * @param int    $toffset
+     * @param int    $toOffset
      *
      * @return bool rue if the character sequence represented by the argument is a prefix of the substring of this
      *              object starting at index toffset; false otherwise.
      */
-    function startsWithIgnoreCase($prefix, int $toffset = 0)
+    function startsWithIgnoreCase($prefix, int $toOffset = 0)
     {
-        if ($toffset < 0 || $toffset > strlen($this->inner))
+        if ($toOffset < 0 || $toOffset > strlen($this->inner))
             return false;
-        return strcasecmp(substr($this->inner, $toffset, strlen($prefix)), $prefix) == 0;
+        return strcasecmp(substr($this->inner, $toOffset, strlen($prefix)), $prefix) == 0;
     }
     
     /**
@@ -267,13 +268,27 @@ class JString
     /**
      * Tells whether or not this string matches the given regular expression.
      *
-     * @param string $regex the regular expression to which this string is to be matched
+     * @param string $regex The regular expression to which this string is to be matched.
      *
-     * @return bool true if, and only if, this string matches the given regular expression
+     * @return bool true if, and only if, this string matches the given regular expression.
      */
     function matches($regex)
     {
         return (boolean)preg_match($regex, $this->inner);
+    }
+
+    /**
+     * Gets a collection of matches using the given regex expression.
+     *
+     * @param string $regex The regular expression to match against
+     *
+     * @return Sequence The collection of matches strings
+     */
+    function match($regex)
+    {
+        $matches = [];
+        preg_match($regex, $this->inner, $matches);
+        return new Sequence($matches);
     }
     
     /**

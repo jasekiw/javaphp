@@ -200,6 +200,17 @@ class JStringTest extends PHPUnit_Framework_TestCase
         $string = new JString("Hello");
         self::assertFalse($string->matches('/bleh/'));
     }
+
+    /**
+     * Tests the map function for a positive
+     */
+    function testMatch()
+    {
+        $string = new JString("Hello");
+        $matches = $string->match('/ello/');
+        self::assertTrue($matches->count() == 1);
+        self::assertTrue($matches->first()->get() == "ello");
+    }
     
     /**
      *
