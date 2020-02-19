@@ -1,6 +1,6 @@
-#Java Php Library
+# Java Php Library
 
-##overview
+## overview
 This library is a java like library that encapsulates all of php's global functions for base types.
 
 JString is the first class built. many will be added
